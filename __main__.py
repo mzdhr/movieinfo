@@ -31,7 +31,7 @@ def display(data):
     print('-----------------------------')
 
 
-if __name__ == '__main__':
+def main():
     title = get_args()
     title_info = fetch_info(title)
 
@@ -39,3 +39,7 @@ if __name__ == '__main__':
         exit(0)
     else:
         display(title_info)
+
+
+if __name__ == '__main__':
+    main()
