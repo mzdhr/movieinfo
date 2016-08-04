@@ -12,11 +12,20 @@ def fetch_info(title):
     connection.close()
 
     # Creating dictionary using json object
-    apiData = json.loads(output)
+    api_data = json.loads(output)
 
-    # Gathering data
-    box_info = [apiData['Title'], apiData['Runtime'], apiData['Type'], apiData['Year'], apiData['Genre'],
-                apiData['imdbRating'], apiData['imdbVotes'], apiData['Plot'], apiData['Director'], apiData['Actors'],
-                apiData['Writer'], apiData['imdbID']]
+    try:
+        # Gathering data
+        box_info = [api_data['Title'], api_data['Runtime'], api_data['Type'], api_data['Year'], api_data['Genre'],
+                    api_data['imdbRating'], api_data['imdbVotes'], api_data['Plot'], api_data['Director'], api_data['Actors'],
+                    api_data['Writer'], api_data['imdbID']]
+
+    except KeyError:
+        box_info = False
+
+    except urllib.request.URLError:
+        box_info = 'No Internet connection!'
 
     return box_info
+
+print(fetch_info('ngasfs'))
